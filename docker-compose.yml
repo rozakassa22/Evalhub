@@ -1,0 +1,20 @@
+services:
+  api:
+    build: .
+    image: evalhub:latest
+    ports:
+      - "8000:8000"
+    environment:
+      EVALHUB_ENVIRONMENT: production
+      EVALHUB_LOG_JSON: "true"
+      EVALHUB_MAX_CONCURRENCY: "16"
+      # To enable the Anthropic LLM judge, uncomment and provide a key:
+      # EVALHUB_JUDGE_BACKEND: anthropic
+      # EVALHUB_ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health').status==200 else 1)"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped

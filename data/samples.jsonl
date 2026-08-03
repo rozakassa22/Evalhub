@@ -1,0 +1,5 @@
+{"input": "What is the capital of France?", "prediction": "The capital of France is Paris.", "reference": "Paris"}
+{"input": "What is the capital of Japan?", "prediction": "Tokyo", "reference": "Tokyo"}
+{"input": "What is the capital of Australia?", "prediction": "Sydney", "reference": "Canberra"}
+{"input": "What is 2 + 2?", "prediction": "4", "reference": "4"}
+{"input": "Who wrote Hamlet?", "prediction": "William Shakespeare wrote Hamlet.", "reference": "Shakespeare"}
