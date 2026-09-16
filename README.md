@@ -1,20 +1,20 @@
-# evalhub — a scalable LLM evaluation platform
+# evalhub - a scalable LLM evaluation platform
 
 `evalhub` is a compact but production-shaped platform for **evaluating the
 outputs of AI models**. It brings together three pieces that a real evaluation
 system needs:
 
-1. **A scalable FastAPI backend** — async, typed, dependency-injected, with
+1. **A scalable FastAPI backend** - async, typed, dependency-injected, with
    health probes, structured logging, and request timing.
-2. **An AI evaluation workflow** — a pluggable set of scorers plus an
+2. **An AI evaluation workflow** - a pluggable set of scorers plus an
    **LLM-as-judge** that runs offline by default and can call Claude
    (`claude-opus-4-8`) when configured.
-3. **A performance-focused data-processing tool** — a single-pass, streaming
+3. **A performance-focused data-processing tool** - a single-pass, streaming
    corpus analyzer that handles datasets larger than memory, with a CLI and a
    built-in throughput benchmark.
 
-The whole thing runs and tests **with no API key and no network access** — the
-default judge is a deterministic heuristic — so it's easy to try, and easy to
+The whole thing runs and tests **with no API key and no network access** - the
+default judge is a deterministic heuristic - so it's easy to try, and easy to
 run in CI.
 
 ```
@@ -103,9 +103,9 @@ Each evaluation returns per-sample scores and per-scorer summary statistics
 
 ### LLM-as-judge
 
-The judge produces a `0–1` quality score plus a short rationale per sample.
+The judge produces a `0-1` quality score plus a short rationale per sample.
 
-- **`heuristic`** (default): deterministic, offline — blends token-F1 with a
+- **`heuristic`** (default): deterministic, offline - blends token-F1 with a
   length signal. Great for tests and for a fast baseline.
 - **`anthropic`**: calls Claude with adaptive thinking and a structured-output
   JSON schema (so the response is always valid). Enable it by installing the
@@ -123,7 +123,7 @@ The judge produces a `0–1` quality score plus a short rationale per sample.
 ## The batch-processing tool
 
 `evalhub-process` streams a JSONL file of samples and reports corpus
-statistics in a **single pass** with **O(vocabulary)** memory — it never loads
+statistics in a **single pass** with **O(vocabulary)** memory - it never loads
 the whole file. Running aggregates use Welford's algorithm for numerically
 stable mean/variance.
 
@@ -195,7 +195,7 @@ docker-compose.yml
 - **Dependency injection** keeps handlers declarative and makes collaborators
   trivial to override in tests (`app.dependency_overrides`).
 - **The store is an interface.** Moving from in-memory to Postgres/Redis means
-  providing another `Repository` — no route changes.
+  providing another `Repository` - no route changes.
 - **Graceful degradation.** A configured-but-unavailable LLM judge falls back
   to the offline one rather than failing the request.
 - **Fast by construction.** The batch tool is single-pass and streaming; the
