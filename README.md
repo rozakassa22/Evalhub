@@ -201,7 +201,3 @@ docker-compose.yml
 - **Fast by construction.** The batch tool is single-pass and streaming; the
   engine bounds concurrency with a semaphore so large datasets don't exhaust
   resources.
-
-## License
-
-MIT
